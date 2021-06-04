@@ -33,16 +33,28 @@ function main(req, res) {
         results.forEach((districtWise) => {
           districtWise.forEach((centerWise) => {
             if (centerWise.session && centerWise.session.vaccine === vaccines.COVAXIN) {
-              console.log(centerWise, vaccines.COVAXIN);
-              console.table(centerWise.session);
-              console.log(centerWise.session);
-              cowin.push(centerWise);
-              covaxinCenters += `AGE => ${centerWise.session.min_age_limit}, ${
-                centerWise.center.district_name
-              } => ${centerWise.center.name.substring(0, 20)}\n`;
-              if (centerWise.session.min_age_limit === 18) {
+              if (
+                (centerWise.session.min_age_limit === 18 &&
+                  centerWise.session.available_capacity_dose1 > 0) ||
+                (centerWise.session.min_age_limit === 45 &&
+                  centerWise.session.available_capacity_dose2 > 0)
+              ) {
+                console.log(vaccines.COVAXIN, centerWise);
+                console.table(centerWise.session);
+                cowin.push(centerWise);
+                covaxinCenters += `AGE => ${centerWise.session.min_age_limit}, ${
+                  centerWise.center.district_name
+                } => ${centerWise.center.name.substring(0, 20)}\n`;
+              }
+              if (
+                centerWise.session.min_age_limit === 18 &&
+                centerWise.session.available_capacity_dose1 > 0
+              ) {
                 ++cowin18;
-              } else if (centerWise.session.min_age_limit === 45) {
+              } else if (
+                centerWise.session.min_age_limit === 45 &&
+                centerWise.session.available_capacity_dose2 > 0
+              ) {
                 ++cowin45;
               }
             } else if (
