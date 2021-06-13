@@ -12,7 +12,7 @@ async function scheduleIntervals(req, res) {
     age = ["18", "45"],
     dose = ["1", "2"],
     refresh_rate = "30",
-    sound = true,
+    sound,
   } = req.body;
   let { district_id } = req.body;
   if (!district_id) {
@@ -75,7 +75,7 @@ async function getFilteredAppointments(vaccine, age, dose, district_id, sound) {
       notifier.notify({
         title: `Covaxin available!! 18+: ${plus18}, 45+: ${plus45}, Total ${plus18 + plus45}`,
         message: notificationText,
-        sound,
+        sound: sound ? true : false,
       });
     }
     console.log("ioioio");
