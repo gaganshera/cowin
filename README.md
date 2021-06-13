@@ -25,7 +25,7 @@ Select multiple districts and choose which vaccine, age group and dose you want 
 
 ---
 
-### Run with Docker
+### Run with Docker (Desktop notifications not supported)
 
 - Make sure you have docker installed
 - Clone this repository
