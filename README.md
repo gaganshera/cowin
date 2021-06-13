@@ -1,6 +1,6 @@
 # cowin
 
-![Cowin](demo2.png "Cowin")
+![Cowin](demo.jpg "Cowin")
 
 Get real-time notifications and updated slot availability information from Cowin.
 Select multiple districts and choose which vaccine, age group and dose you want to monitor slots for.
