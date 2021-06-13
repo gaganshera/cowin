@@ -7,9 +7,7 @@ require("dotenv").config();
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
-var appointmentsRouter = require("./routes/appointments").router;
-var appointments = require("./routes/appointments").schedule;
-appointments();
+var appointmentsRouter = require("./routes/appointments");
 
 var app = express();
 
