@@ -392,6 +392,7 @@ The above copyright notice and this permission notice shall be included in all c
     <script src="/socket.io/socket.io.js"></script>
     <script type="application/javascript">
       var datatable;
+      //socket connection
       var socket = io();
       socket.on("message", function (data) {
         if (data.availableCenters && data.availableCenters[0]) {
@@ -401,16 +402,22 @@ The above copyright notice and this permission notice shall be included in all c
           datatable.draw();
         }
       });
+
       document.addEventListener(
         "DOMContentLoaded",
         function () {
+          //initialise state dropdown
           document.getElementById("states").value = 9;
         },
         false
       );
+
       $(document).ready(function () {
+        //initialise appointments datatable
         datatable = $("#appointments_table").DataTable();
       });
+
+      //called when form is submitted
       function refreshAppointments(event, form) {
         event.preventDefault();
         let selectedDistricts = $(form).find(".district-check:checked").length;
@@ -445,12 +452,15 @@ The above copyright notice and this permission notice shall be included in all c
             }
           );
       }
+
+      //show districts as per states
       $("#states").change(function () {
         $(".districts").addClass("d-none");
         $(".district-check").prop("checked", false);
         $(`#district-${$(this).val()}`).removeClass("d-none");
       });
 
+      //update datatable from fetch or socket
       function prepareDatatableData(availableCenters) {
         let datatableData = [];
         availableCenters.forEach((centerInfo) => {

@@ -8,6 +8,8 @@ WORKDIR /usr/src/app
 # where available (npm@5+)
 COPY package*.json ./
 RUN npm install
+
+ENV DOCKERISED=1
 # Bundle app source
 COPY . .
 EXPOSE 1234

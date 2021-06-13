@@ -86,4 +86,7 @@ function onListening() {
   var addr = server.address();
   var bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
   console.log("Listening on " + bind);
+  console.log(
+    `Open http://localhost:${addr.port ? addr.port : addr}/appointments/ in your browser`
+  );
 }
