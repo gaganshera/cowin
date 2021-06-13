@@ -29,6 +29,5 @@ Select multiple districts and choose which vaccine, age group and dose you want 
 
 - Make sure you have docker installed
 - Clone this repository
-- Build docker image: `docker build -t "images/cowin" .`
-- Run docker container: `docker run --name cowin -p 1234:1234 -d images/cowin`
+- Run docker container: `docker run --name cowin -p 1234:1234 -d gaganshera/cowin:latest`
 - Go to http://localhost:1234/appointments/
