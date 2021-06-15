@@ -13,6 +13,7 @@ async function scheduleIntervals(req, res) {
     dose = ["1", "2"],
     refresh_rate = "30",
     sound,
+    vaccine_type = ["paid", "free"],
   } = req.body;
   let { district_id } = req.body;
   if (!district_id) {
@@ -29,14 +30,15 @@ async function scheduleIntervals(req, res) {
       age,
       dose,
       district_id,
-      sound
+      sound,
+      vaccine_type
     );
   }
 
-  return await getFilteredAppointments(vaccine, age, dose, district_id, sound);
+  return await getFilteredAppointments(vaccine, age, dose, district_id, sound, vaccine_type);
 }
 
-async function getFilteredAppointments(vaccine, age, dose, district_id, sound) {
+async function getFilteredAppointments(vaccine, age, dose, district_id, sound, vaccine_type) {
   try {
     let results = await async.mapLimit(district_id, 20, fetchAppointmentsInfo);
     let availableCenters = [];
@@ -47,9 +49,11 @@ async function getFilteredAppointments(vaccine, age, dose, district_id, sound) {
       results.forEach((districtWise) => {
         districtWise.forEach((centerWise) => {
           if (
+            centerWise.center &&
             centerWise.session &&
             vaccine.includes(centerWise.session.vaccine) &&
-            age.includes(String(centerWise.session.min_age_limit))
+            age.includes(String(centerWise.session.min_age_limit)) &&
+            vaccine_type.includes(centerWise.center.fee_type.toLowerCase())
           ) {
             if (dose.includes("1") && centerWise.session.available_capacity_dose1 > 0) {
               availableCenters.push(centerWise);
