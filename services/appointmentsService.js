@@ -8,7 +8,7 @@ let interval;
 
 async function scheduleIntervals(req, res) {
   const {
-    vaccine = [vaccines.COVISHIELD, vaccines.COVAXIN],
+    vaccine = [vaccines.COVISHIELD, vaccines.COVAXIN, vaccines.SPUTNIKV],
     age = ["18", "45"],
     dose = ["1", "2"],
     refresh_rate = "30",

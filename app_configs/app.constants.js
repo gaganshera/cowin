@@ -2,6 +2,7 @@ module.exports = {
   vaccines: {
     COVAXIN: "COVAXIN",
     COVISHIELD: "COVISHIELD",
+    SPUTNIKV: "SPUTNIK V",
   },
   states: [
     {
