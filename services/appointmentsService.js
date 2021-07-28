@@ -77,7 +77,7 @@ async function getFilteredAppointments(vaccine, age, dose, district_id, sound, v
     }
     if (availableCenters[0]) {
       notifier.notify({
-        title: `Covaxin available!! 18+: ${plus18}, 45+: ${plus45}, Total ${plus18 + plus45}`,
+        title: `Vaccine available!! 18+: ${plus18}, 45+: ${plus45}, Total ${plus18 + plus45}`,
         message: notificationText,
         sound: sound ? true : false,
       });
